@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Search Items</h1>
+
+    {{ form_start(itemSearchForm) }}
+        {{ form_widget(itemSearchForm) }}
+    {{ form_end(itemSearchForm) }}
+
+    {% if results %}
+        <h2>Results</h2>
+        <ul>
+            {% for result in results %}
+                <li>
+                    <a href="{{ path('item_show', { 'id': result.id }) }}">
+                        {{ result.title }} -
+                        {{ result.content }} -
+                        {{ result.createdAt|date('Y-m-d H:i:s') }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <ul>
+        <li>
+            <a href="{{ path('item_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

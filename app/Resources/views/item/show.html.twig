@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Item</h1>
+
+    <table class="table-bordered">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ item.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ item.title }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ item.content }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{% if item.createdat %}{{ item.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updated_at</th>
+                <td>{% if item.updatedat %}{{ item.updatedat|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Published_at</th>
+                <td>
+                    {% if item.publishedat is not null %}
+                        {{ item.publishedat|date('Y-m-d') }}
+                    {% else %}
+                        No
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('item_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('item_edit', { 'id': item.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

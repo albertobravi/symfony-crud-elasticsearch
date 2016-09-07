@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Item list</h1>
+
+    <table class="table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Created_at</th>
+                <th>Updated_at</th>
+                <th>Published_at</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td><a href="{{ path('item_show', { 'id': item.id }) }}">{{ item.id }}</a></td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.content }}</td>
+                <td>{% if item.createdat %}{{ item.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if item.updatedat %}{{ item.updatedat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    {% if item.publishedat is not null %}
+                        {{ item.publishedat|date('Y-m-d') }}
+                    {% else %}
+                        No
+                    {% endif %}
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('item_show', { 'id': item.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('item_edit', { 'id': item.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('item_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
