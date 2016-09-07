@@ -1,26 +1,22 @@
 # symfony-crud-elasticsearch
 A simple CRUD operation on a Symfony Entity with Elasticsearch index and retrive
 
+### Setup project settings
 
-
-## Setup project settings
 ```
 composer install
 ```
-mysql username: homestead
-mysql username: secret
+
+during composer symfony installation, set up mysql username `homestead` and password: `secret`
 
 ```
 php vendor/bin/homestead make
+or
+vendor\bin\homestead.bat make
 ```
 
 
-* edit "./Homestead.yaml" with personal paths, database name and options
-* Add on local file Hosts:
-```
-192.168.10.10 	symfony-crud-elasticsearch.app
-```
-
+ edit "./Homestead.yaml" with personal paths, database name and options
 
 ```
 vagrant up
@@ -32,8 +28,7 @@ cd ~/symfony-crud-elasticsearch
 php bin/console doctrine:schema:update --force
 ```
 
-
-## Install Java and Elasticsearch into Vagrant VM
+### Install Java and Elasticsearch into Vagrant VM
 ```
 sudo apt-get install default-jre
 
@@ -49,9 +44,17 @@ sudo /bin/systemctl enable elasticsearch.service
 ```
 
 
-## Populate Elasticsearch
+### Populate Elasticsearch
 ```
 cd ~/symfony-crud-elasticsearch
 
 php bin/console fos:elastica:populate
 ```
+
+
+### Add on local file Hosts:
+```
+192.168.10.10 	symfony-crud-elasticsearch.app
+```
+
+# Enjoy
