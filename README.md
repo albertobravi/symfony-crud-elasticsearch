@@ -56,5 +56,3 @@ php bin/console fos:elastica:populate
 ```
 192.168.10.10 	symfony-crud-elasticsearch.app
 ```
-
-# Enjoy
